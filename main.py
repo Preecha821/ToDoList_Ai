@@ -1,8 +1,29 @@
-print("Hello, World!___")
+tasks = []
+
 
 def add_task():
-	"""เพิ่มงานใหม่ (empty)"""
-	pass
+	"""เพิ่มงานใหม่: รับ title, description, due_date แล้วเก็บไว้ใน `tasks` list
+
+	โครงสร้างแต่ละงานเป็น dict ที่มี key: id, title, description, due_date, completed
+	"""
+
+	title = input("ชื่อเรื่อง: ").strip()
+	description = input("รายละเอียด: ").strip()
+	due_date = input("วันครบกำหนด (YYYY-MM-DD หรือข้อความ): ").strip()
+
+	# หาค่า id ถัดไป (1-based)
+	next_id = max([t['id'] for t in tasks], default=0) + 1
+
+	task = {
+		'id': next_id,
+		'title': title,
+		'description': description,
+		'due_date': due_date,
+		'completed': False,
+	}
+
+	tasks.append(task)
+	print(f"เพิ่มงานเรียบร้อย (id={next_id})")
 
 
 def view_tasks():
